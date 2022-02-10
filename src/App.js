@@ -12,13 +12,22 @@ class App extends React.Component {
 
     this.state = {
       equation: '',
+      graphEquation: '',
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   onChange(event) {
     this.setState({ equation: event.target.value });
+  }
+
+  onSubmit(event) {
+    const { equation } = this.state;
+    this.setState({ graphEquation: equation });
+
+    event.preventDefault();
   }
 
   render() {
@@ -26,9 +35,8 @@ class App extends React.Component {
 
     return (
       <div className='main'>
-        <div className='main_left_div'>
-          <div className='main_left_top_div'>
-            <div className='main_left_top_div_content'>
+        <div className='main_top'>
+            <div className='main_top_content'>
               <h1>Type your equation here</h1>
               <EquationInput
                 type="text"
@@ -36,13 +44,15 @@ class App extends React.Component {
                 onChange={this.onChange}
               />
             </div>
-          </div>
-          <div className='main_left_bottom_div'></div>
+            <div className='main_top_katex'>
+              <InlineMath>{equation}</InlineMath>
+            </div>
+          
         </div>
-        <div className='main_right_div'> 
-          <div className='main_right_div_content'>
-            <InlineMath>{equation}</InlineMath>
-            <div className='graph-div'>
+        <div className='main_bottom'> 
+          <div className='main_bottom_left_div'></div>
+          <div className='main_bottom_right_div'>
+            <div className='main_bottom_right_div_content'>  
               <h1>Graph</h1>
               <div className='graph'>
 

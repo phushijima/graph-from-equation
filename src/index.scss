@@ -5,70 +5,71 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F7F8FA;
 }
 
 .main {
   position: absolute;
   left: 50%;
   top: 50%;
+  width: 1000px;
   height: auto;
   transform: translate(-50%, -50%);
-  display: flex;
 
-  &_left_div {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &_left_top_div, &_left_bottom_div, &_right_div {
-    background-color: #F7F8FA;
+  &_top, &_bottom_left_div, &_bottom_right_div {
+    background-color: #ffffff;
     border-color: #E2E8F0;
     border-style: solid;
     border-width: 1px;
     border-radius: 8px;
   }
 
-  &_left_top_div, &_left_bottom_div {
-    margin-right: 20px;
-    width: 300px;
-  }
-
-  &_left_top_div {
+  &_top {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 95px;
+    width: 100%;
+    height: 110px;
+    margin-bottom: 20px;
+
+    &_content, &_katex {
+      display: flex;
+    }
 
     &_content {
-      display: flex;
+      justify-content: center;
       flex-direction: column;
-      align-items: center;
+      width: 300px;
+      margin: 0px 20px 0px 30px;
       h1 {
         margin: 0 0 10px 0;
         font-size: 18px;
         color: #b2b2b2;
-        text-align: center;
+      }
+    }
+
+    &_katex {
+      align-items: center;
+      .katex { 
+        font-size: 35px; 
       }
     }
   }
 
-  &_left_bottom_div {
-    margin-top: 15px;
-    height: 490px;
-  }
+  &_bottom {
+    display: flex;
+    flex-direction: row;
 
-  &_right_div {
-    width: 600px;
-    height: 600px;
-
-    &_content {
-      margin: 15px 30px;
-
-      .graph-div {
-        width: 100%;
-        height: 500px;
-        margin-top: 40px;
-
+    &_left_div {
+      height: 500px;
+      width: 300px;
+      margin-right: 20px;
+    }
+  
+    &_right_div {
+      width: 680px;
+      height: 500px;
+  
+      &_content {
+        margin: 15px 30px;
         h1 {
           color: #b2b2b2;
           margin: 0 0 20px 0;
@@ -76,12 +77,12 @@ body {
         
         .graph {
           width: 100%;
-          height: 420px;
+          height: 300px;
           background-color: #ffffff;
         }
       }
     }
-
-    .katex { font-size: 28px; }
   }
+
+  
 }
