@@ -1,7 +1,7 @@
 import React from 'react';
 import { InlineMath } from 'react-katex';
 
-import { EquationInput } from './components';
+import { EquationInput, Graph } from './components';
 
 import 'katex/dist/katex.min.css';
 
@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { equation } = this.state;
+    const { equation, graphEquation } = this.state;
 
     return (
       <div className='main'>
@@ -54,9 +54,9 @@ class App extends React.Component {
           <div className='main_bottom_right_div'>
             <div className='main_bottom_right_div_content'>  
               <h1>Graph</h1>
-              <div className='graph'>
-
-              </div>
+              <Graph 
+                  value={graphEquation}
+              />
             </div>
           </div>
         </div>
