@@ -1,69 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InlineMath } from 'react-katex';
+import functionPlot from 'function-plot';
 
-import { EquationInput, Graph } from './components';
+import { EquationInput } from './components';
 
 import 'katex/dist/katex.min.css';
 
-class App extends React.Component {
+function App() {
+  const [equation, setEquation] = useState('');
 
-  constructor(props) {
-    super(props);
+  const graphPlot = (graphEquation) => {
+    functionPlot({
+        target: '#graph',
+        data: [{
+          fn: graphEquation 
+        }]
+      });
+};
 
-    this.state = {
-      equation: '',
-      graphEquation: '',
-    };
+  const onChange = (event) => {
+    setEquation(event.target.value);
+  };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onChange(event) {
-    this.setState({ equation: event.target.value });
-  }
-
-  onSubmit(event) {
-    const { equation } = this.state;
-    this.setState({ graphEquation: equation });
+  const onSubmit = (event) => {
+    graphPlot(equation);
 
     event.preventDefault();
   }
 
-  render() {
-    const { equation, graphEquation } = this.state;
-
-    return (
-      <div className='main'>
-        <div className='main_top'>
-            <div className='main_top_content'>
-              <h1>Type your equation here</h1>
-              <EquationInput
-                type="text"
-                value={equation}
-                onChange={this.onChange}
-              />
-            </div>
-            <div className='main_top_katex'>
-              <InlineMath>{equation}</InlineMath>
-            </div>
-          
-        </div>
-        <div className='main_bottom'> 
-          <div className='main_bottom_left_div'></div>
-          <div className='main_bottom_right_div'>
-            <div className='main_bottom_right_div_content'>  
-              <h1>Graph</h1>
-              <Graph 
-                  value={graphEquation}
-              />
-            </div>
+  return (
+    <div className='main'>
+      <div className='main_top'>
+          <div className='main_top_content'>
+            <h1>Type your equation here</h1>
+            <EquationInput
+              type="text"
+              value={equation}
+              onChange={onChange}
+              onSubmit={onSubmit} 
+            />
+          </div>
+          <div className='main_top_katex'>
+            <InlineMath>{equation}</InlineMath>
+          </div>
+        
+      </div>
+      <div className='main_bottom'> 
+        <div className='main_bottom_left_div'></div>
+        <div className='main_bottom_right_div'>
+          <div className='main_bottom_right_div_content'>  
+            <h1>Graph</h1>
+            <div id='graph'></div>
           </div>
         </div>
       </div>
-    );
-  }
- 
+    </div>
+  );
 } 
 
 export default App;
