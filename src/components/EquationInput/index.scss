@@ -1,15 +1,39 @@
+form {
+  display: flex;
+}
+
 input {
-    border: 1px solid;
-    border-radius: 3px;
-    font-size: 14px;
-    width: 250px;
-    padding: 5px;
-    transition: 0.1s ease-out;
-    border-color: #cccccc;
-    color: #b2b2b2;
+  border: 1px solid;
+  border-radius: 3px;
+  font-size: 14px;
+  width: 250px;
+  padding: 5px;
+  transition: 0.1s ease-out;
+  border-color: #cccccc;
+  color: #b2b2b2;
+}
+
+input:focus {
+  outline: none;
+  border-color: #828282;
+  color: #333333;
+}
+
+button {
+  margin-left: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  
+  svg {
+      align-self: center;
+      transition: fill 0.1s ease-out;
+      fill: lighten($color: #000000, $amount: 80%);
   }
-  input:focus {
-    outline: none;
-    border-color: #828282;
-    color: #333333;
+
+  &:hover {
+      svg {
+          fill: lighten($color: #000000, $amount: 50%);
+      }
   }
+}
